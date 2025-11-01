@@ -17,7 +17,7 @@ public class EligibleOrderItemReader extends JpaPagingItemReader<OrderItem> {
 
     public EligibleOrderItemReader(
             EntityManagerFactory entityManagerFactory,
-            @Value("#{jobParameters['dateStr'] ?: T(java.time.YearMonth).now().toString()}") String dateStr,
+            @Value("#{jobParameters['dateStr']") String dateStr,
             @Value("${custom.batch.chunk.size}") Integer batchSize
     ) {
 

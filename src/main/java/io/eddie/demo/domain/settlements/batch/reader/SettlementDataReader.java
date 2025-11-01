@@ -19,7 +19,7 @@ public class SettlementDataReader extends JpaCursorItemReader<Settlement> {
 
     public SettlementDataReader(
             EntityManagerFactory entityManagerFactory
-            , @Value("#{jobParameters['dateStr'] ?: T(java.time.YearMonth).now().toString()}") String dateStr
+            , @Value("#{jobParameters['dateStr']") String dateStr
 
     ) {
 
