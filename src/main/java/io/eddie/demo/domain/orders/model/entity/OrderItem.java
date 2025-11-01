@@ -21,6 +21,9 @@ public class OrderItem extends BaseEntity {
     주문 시점의 제품 상세정보
      */
     @Column(nullable = false)
+    private String sellerCode;
+
+    @Column(nullable = false)
     private String productCode;
 
     @Column(nullable = false)
@@ -33,8 +36,9 @@ public class OrderItem extends BaseEntity {
     private Integer quantity;
 
     @Builder
-    public OrderItem(Orders order, String productCode, String productName, Long productPrice, Integer quantity) {
+    public OrderItem(Orders order, String sellerCode, String productCode, String productName, Long productPrice, Integer quantity) {
         this.order = order;
+        this.sellerCode = sellerCode;
         this.productCode = productCode;
         this.productName = productName;
         this.productPrice = productPrice;
