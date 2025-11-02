@@ -39,7 +39,5 @@ public class SettlementProcessor implements ItemProcessor<Settlement, Settlement
         }
 
         return settlement;
-
     }
-
 }

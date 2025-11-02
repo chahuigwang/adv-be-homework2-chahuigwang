@@ -13,9 +13,9 @@ import java.util.Map;
 
 @StepScope
 @Component
-public class EligibleOrderItemReader extends JpaPagingItemReader<OrderItem> {
+public class PaidOrderItemReader extends JpaPagingItemReader<OrderItem> {
 
-    public EligibleOrderItemReader(
+    public PaidOrderItemReader(
             EntityManagerFactory entityManagerFactory,
             @Value("#{jobParameters['dateStr']") String dateStr,
             @Value("${custom.batch.chunk.size}") Integer batchSize

@@ -3,7 +3,7 @@ package io.eddie.demo.domain.settlements.batch.config;
 import io.eddie.demo.domain.orders.model.entity.OrderItem;
 import io.eddie.demo.domain.settlements.batch.processor.SettlementConvertProcessor;
 import io.eddie.demo.domain.settlements.batch.processor.SettlementProcessor;
-import io.eddie.demo.domain.settlements.batch.reader.EligibleOrderItemReader;
+import io.eddie.demo.domain.settlements.batch.reader.PaidOrderItemReader;
 import io.eddie.demo.domain.settlements.batch.reader.SettlementDataReader;
 import io.eddie.demo.domain.settlements.batch.writer.SettlementDataWriter;
 import io.eddie.demo.domain.settlements.batch.writer.SettlementStatusWriter;
@@ -45,13 +45,13 @@ public class SettlementBatchConfiguration {
     public Step prepareSettlementDataStep(
             JobRepository jobRepository
             , PlatformTransactionManager txManager
-            , EligibleOrderItemReader eligibleOrderItemReader
+            , PaidOrderItemReader paidOrderItemReader
             , SettlementConvertProcessor settlementConvertProcessor
             , SettlementDataWriter settlementDataWriter
     ) {
         return new StepBuilder("prepareSettlementDataStep", jobRepository)
                 .<OrderItem, Settlement>chunk(batchSize, txManager)
-                .reader(eligibleOrderItemReader)
+                .reader(paidOrderItemReader)
                 .processor(settlementConvertProcessor)
                 .writer(settlementDataWriter)
                 .build();
@@ -80,5 +80,4 @@ public class SettlementBatchConfiguration {
                 .retry(Exception.class)
                 .build();
     }
-
 }
